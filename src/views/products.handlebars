@@ -1,0 +1,72 @@
+<div class="main-container">
+    <div class="tabla profile-container">
+        <div class="titulos">
+            <div class="container-cart">
+                <h2>PERFIL</h2>
+            </div>
+            <ul class="ul-profile" id="ul-profile">
+                <li class="li-titles">Rol</li>
+                <li class="li-titles">Nombre</li>
+                <li class="li-titles">Apellido</li>
+                <li class="li-titles">Email</li>
+                <li class="li-titles">Edad</li>
+            </ul>
+        </div>
+        <div id="form-user">
+        </div>
+    </div>
+
+    <div class="tabla">
+        <div class="titulos">
+            <div class="container-cart" id="container-cart">
+                <h1>LISTA DE PRODUCTOS</h1>
+                <a href="" class="btn-cart" id="btn-cart">
+                    <div>🛒</div>
+                </a>
+            </div>
+            <ul>
+                <li class="li-titles">Code</li>
+                <li class="li-titles">Nombre</li>
+                <li class="li-description li-titles">Descripcion</li>
+                <li class="li-price li-titles">Precio</li>
+                <li class="li-titles">Stock</li>
+                <li class="li-titles">Categoria</li>
+                <li class="li-titles">Agregar</li>
+
+            </ul>
+        </div>
+        <div id="form-real-time">
+            {{#each data.payload}}
+            <ul class="producto" data-id={{this._id}}>
+                <li class="idTitle">{{this.code}}</li>
+                <li><strong>{{this.title}}</strong></li>
+                <li class="li-description">"{{this.description}}"</li>
+                <li class="li-price">$ {{this.price}} </li>
+                <li>{{this.stock}}</li>
+                <li>{{this.category}}</li>
+                <button class="btn-addToCart" id="btn-addToCart">➕</button>
+            </ul>
+            {{/each}}
+        </div>
+        <div class="container-btn-pages">
+
+            {{#if data.hasPrevPage}}
+            <a class="btn-pages" href={{data.prevLink}}>PREV</a>
+            {{else}}
+            <a class="btn-pages-none">PREV</a>
+            {{/if}}
+
+            <p>{{data.page}}</p>
+            {{#if data.hasNextPage}}
+            <a class="btn-pages" href={{data.nextLink}}>NEXT</a>
+            {{else}}
+            <a class="btn-pages-none">NEXT</a>
+            {{/if}}
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/products.js"></script>
