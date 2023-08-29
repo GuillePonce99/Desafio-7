@@ -46,11 +46,11 @@ ul {
 }
 
 .ul-profile {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
 }
 
 .ul-profile-2 {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .ul-dos {
@@ -185,11 +185,10 @@ h2 {
 }
 
 .btn-logout {
-    width: 8vw;
     background-color: #632432;
     border: solid 3px #461923;
     font-size: 16px;
-    padding: 3px;
+    padding: 6px 12px;
     margin: 0 auto;
 }
 

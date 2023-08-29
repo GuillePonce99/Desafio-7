@@ -9,9 +9,11 @@ import routerProducts from "./router/products.router.js"
 import routerCarts from "./router/carts.router.js"
 import routerViews from "./router/views.router.js"
 import routerSessions from "./router/sessions.router.js"
-import cookieParser from "cookie-parser"
 import session from "express-session"
 import MongoStore from "connect-mongo"
+import passport from "passport"
+import initializePassport from "./config/passport.config.js"
+import { auth } from "./middlewares/auth.js"
 
 
 const app = express()
@@ -50,7 +52,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
-app.use(cookieParser("CoderS3cR3tC0D3"))
+
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"))
@@ -63,8 +68,8 @@ app.set("view engine", "handlebars")
 
 //ENDPOINTS
 
-app.use("/api/products", routerProducts)
-app.use("/api/carts", routerCarts)
+app.use("/api/products", auth, routerProducts)
+app.use("/api/carts", auth, routerCarts)
 app.use("/api/sessions", routerSessions)
 app.use("/", routerViews)
 

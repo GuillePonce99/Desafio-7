@@ -17,4 +17,6 @@ router.get("/signup", viewsController.signup)
 
 router.get("/", viewsController.login)
 
+router.get("/forgot", viewsController.forgot)
+
 export default router

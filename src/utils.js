@@ -1,7 +1,7 @@
 import fs from "fs"
 import { dirname } from "path"
-import path from "path";
 import { fileURLToPath } from "url"
+import bcrypt from "bcrypt"
 
 export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = dirname(__filename);
@@ -17,7 +17,6 @@ const read = async (file) => {
   }
 }
 
-
 const write = async (file, data) => {
 
   try {
@@ -29,4 +28,8 @@ const write = async (file, data) => {
   }
 }
 
-export default { read, write };
+export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+
+export const isValidPassword = (password, user) => bcrypt.compareSync(password, user.password)
+
+export default { read, write, createHash, isValidPassword };

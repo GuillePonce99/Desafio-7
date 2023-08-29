@@ -23,7 +23,6 @@ export class viewsController {
 
     static products = async (req, res) => {
         const data = await productsController.getProductsView(req, res)
-
         res.render("products", { style: "styles.css", title: "PRODUCTOS", data })
     }
 
@@ -39,6 +38,10 @@ export class viewsController {
 
     static login = async (req, res) => {
         res.render("login", { style: "login.css" })
+    }
+
+    static forgot = async (req, res) => {
+        res.render("forgot", { style: "login.css" })
     }
 
 }

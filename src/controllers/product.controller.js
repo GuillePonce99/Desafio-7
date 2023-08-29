@@ -245,6 +245,7 @@ export class productsController {
     }
 
     static getProductsView = async (req, res) => {
+
         let { limit = 10, page = 1, sort, query } = req.query
 
         try {
@@ -274,12 +275,17 @@ export class productsController {
 
             let status = result ? "success" : "error"
 
-
             let queryFormated = query ? req.query.query.replace(/ /g, "%20") : ""
+
+            const user = await req.session.user
+
+            if (user) {
+                user.counter++
+            }
 
             let response = {
                 status,
-                payload: product,
+                payload: { product, user },
                 totalPages: result.totalPages,
                 prevPage: result.prevPage,
                 nextPage: result.nextPage,

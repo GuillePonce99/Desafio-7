@@ -1,16 +1,8 @@
 
 export const auth = async (req, res, next) => {
-    if (req.session?.role === "usuario") {
-        console.log("usuarioAuth");
-        next()
-    } else if (req.session?.role === "admin") {
-        console.log("adminAuth");
+    if (req.session?.passport) {
         next()
     } else {
         res.redirect("/")
     }
 }
-
-
-
-
